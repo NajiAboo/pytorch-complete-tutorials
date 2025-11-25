@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyTorch Introduction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .presentation-container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            padding: 60px;
+            min-height: 600px;
+            animation: fadeIn 0.5s;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide h1 {
+            font-size: 3em;
+            color: #ee4c2c;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .slide h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .slide h3 {
+            font-size: 1.8em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .slide ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .slide li {
+            padding-left: 40px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .slide li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ee4c2c;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-text {
+            font-size: 5em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ee4c2c, #ff6b45);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 60px;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            background: #ee4c2c;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: #d43d1f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(238, 76, 44, 0.3);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .highlight {
+            color: #ee4c2c;
+            font-weight: 600;
+        }
+
+        .companies {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .company-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ee4c2c;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        .command {
+            color: #50fa7b;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="logo">
+                <div class="logo-text">PyTorch</div>
+            </div>
+            <h1>Introduction to PyTorch</h1>
+            <p style="text-align: center; font-size: 1.5em; color: #888;">Your Journey into Deep Learning Begins Here</p>
+        </div>
+
+        <!-- Slide 2: What is PyTorch -->
+        <div class="slide">
+            <h2>What is PyTorch?</h2>
+            <p>PyTorch is an <span class="highlight">open-source machine learning framework</span> developed by Meta's AI Research lab (FAIR).</p>
+            <ul>
+                <li>Built on Python and optimized for deep learning research and production</li>
+                <li>Provides tensor computation with GPU acceleration</li>
+                <li>Offers automatic differentiation for building neural networks</li>
+                <li>Features dynamic computational graphs for flexible model building</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Why PyTorch -->
+        <div class="slide">
+            <h2>Why Choose PyTorch?</h2>
+            <ul>
+                <li><span class="highlight">Pythonic and Intuitive:</span> Feels natural to Python developers</li>
+                <li><span class="highlight">Dynamic Computation:</span> Build models on-the-fly with ease</li>
+                <li><span class="highlight">Research Friendly:</span> Rapid prototyping and experimentation</li>
+                <li><span class="highlight">Production Ready:</span> Seamless transition from research to deployment</li>
+                <li><span class="highlight">Strong Community:</span> Extensive documentation and active support</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: The Story of PyTorch -->
+        <div class="slide">
+            <h2>The Story of PyTorch</h2>
+            <ul>
+                <li><span class="highlight">2002:</span> Torch (Lua-based) created by Ronan Collobert</li>
+                <li><span class="highlight">2016:</span> PyTorch announced by Facebook AI Research</li>
+                <li><span class="highlight">2018:</span> PyTorch 1.0 released with production capabilities</li>
+                <li><span class="highlight">2019:</span> Became the fastest-growing deep learning framework</li>
+                <li><span class="highlight">2022:</span> PyTorch 2.0 introduced with compiler improvements</li>
+                <li><span class="highlight">Today:</span> The leading framework for AI research and industry</li>
+            </ul>
+        </div>
+
+        <!-- Slide 5: Advantages Over Other Frameworks -->
+        <div class="slide">
+            <h2>Advantages Over Other Frameworks</h2>
+            <h3>vs TensorFlow:</h3>
+            <ul>
+                <li>More intuitive and Pythonic syntax</li>
+                <li>Easier debugging with standard Python tools</li>
+                <li>Dynamic graphs vs static (traditional TensorFlow)</li>
+            </ul>
+            <h3>vs JAX:</h3>
+            <ul>
+                <li>Larger ecosystem and community support</li>
+                <li>More comprehensive documentation and tutorials</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: Companies Using PyTorch -->
+        <div class="slide">
+            <h2>Companies Using PyTorch</h2>
+            <div class="companies">
+                <div class="company-item">
+                    <h3>Meta (Facebook)</h3>
+                    <p>AI research, computer vision, NLP</p>
+                </div>
+                <div class="company-item">
+                    <h3>Tesla</h3>
+                    <p>Autopilot and self-driving technology</p>
+                </div>
+                <div class="company-item">
+                    <h3>OpenAI</h3>
+                    <p>GPT models and AI research</p>
+                </div>
+                <div class="company-item">
+                    <h3>Microsoft</h3>
+                    <p>Azure ML and AI services</p>
+                </div>
+                <div class="company-item">
+                    <h3>Uber</h3>
+                    <p>Pyro - probabilistic programming</p>
+                </div>
+                <div class="company-item">
+                    <h3>NVIDIA</h3>
+                    <p>Deep learning research and tools</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Installation -->
+        <div class="slide">
+            <h2>Installing PyTorch</h2>
+            <h3>Prerequisites:</h3>
+            <ul>
+                <li>Python 3.8 or higher</li>
+                <li>pip or conda package manager</li>
+            </ul>
+            <h3>Installation Commands:</h3>
+            <div class="code-block">
+<span class="command"># CPU Only</span>
+pip install torch torchvision torchaudio
+
+<span class="command"># With CUDA (GPU support)</span>
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+<span class="command"># Using Conda</span>
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+            </div>
+        </div>
+
+        <!-- Slide 8: Verify Installation -->
+        <div class="slide">
+            <h2>Verify Your Installation</h2>
+            <p>Run this code to verify PyTorch is installed correctly:</p>
+            <div class="code-block">
+import torch
+
+print(f"PyTorch Version: {torch.__version__}")
+print(f"CUDA Available: {torch.cuda.is_available()}")
+
+<span class="command"># Create a simple tensor</span>
+x = torch.rand(3, 3)
+print(f"Sample Tensor:\n{x}")
+            </div>
+            <p style="margin-top: 30px;">If this runs without errors, you're ready to start learning PyTorch! 🎉</p>
+        </div>
+
+        <!-- Slide 9: Thank You -->
+        <div class="slide">
+            <div class="logo">
+                <div class="logo-text">Thank You!</div>
+            </div>
+            <h2 style="text-align: center; margin-top: 40px;">Ready to Start Your PyTorch Journey?</h2>
+            <p style="text-align: center; font-size: 1.4em; margin-top: 30px;">
+                Subscribe for more tutorials and deep learning content!
+            </p>
+        </div>
+
+        <div class="controls">
+            <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+            <div class="slide-counter">
+                <span id="slideNumber">1</span> / <span id="totalSlides">9</span>
+            </div>
+            <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('slideNumber').textContent = currentSlide + 1;
+            
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') changeSlide(-1);
+            if (event.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
